@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text, View, Button, TextInput, Alert, StyleSheet, TouchableOpacity } from 'react-native';
+import { Text, View, Button, TextInput, Alert, StyleSheet, TouchableOpacity, Touchable } from 'react-native';
 import firebase from '../config/config';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import * as Font from 'expo-font';
@@ -62,6 +62,33 @@ export default class Home extends React.Component {
         <Text style={estilos.texto}>Bem vindo(a) ao GymFEI!</Text>
         <Text style={estilos.subtexto}>Aqui você pode acompanhar seu progresso, acessar treinos personalizados e muito mais!</Text>
         <Text style={estilos.textoFrase}>{this.state.fraseMotivacional}</Text>
+        <View>
+          <TouchableOpacity 
+            title="Meus treinos" 
+            onPress={() => this.props.navigation.navigate('Treinos')}
+            style={estilos.btnNav} 
+          >
+            <Text style={estilos.btnNavText}>Meus Treinos</Text>
+          </TouchableOpacity>
+          
+
+          <TouchableOpacity 
+            title="Cadastrar Treino" 
+            onPress={() => this.props.navigation.navigate('CadastrarTreino')} 
+            style={estilos.btnNav}
+          >
+            <Text style={estilos.btnNavText}>Cadastrar Treino</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity 
+            title="Progresso" 
+            onPress={() => this.props.navigation.navigate('Progresso')} 
+            style={estilos.btnNav}
+            >
+            <Text style={estilos.btnNavText}>Progresso</Text>
+          </TouchableOpacity>
+          
+        </View>
       </View>
     );
   }
@@ -71,7 +98,7 @@ const estilos = StyleSheet.create({
     botao: {
       backgroundColor: '#aaaaab',
       padding: 15,
-      marginTop: 50,
+      marginTop: 10,
       alignSelf:'flex-start',
       position: 'absolute',
       borderRadius: 8,
@@ -93,7 +120,7 @@ const estilos = StyleSheet.create({
     },
     subtexto: {
       color: 'whitesmoke',
-      fontSize: 16,
+      fontSize: 18,
       fontFamily: 'Montserrat',
       fontWeight: '300',
       textAlign: 'center',
@@ -101,10 +128,26 @@ const estilos = StyleSheet.create({
     },
     textoFrase: {
       color:'#a970f7',
-      fontSize: 20,
+      fontSize: 22,
       fontFamily: 'Montserrat',
       fontStyle: 'italic',
       textAlign: 'center',
       marginTop: 5,
+      marginBottom: 50,
+    },
+    btnNav: {
+      backgroundColor: '#5a2c99',
+      padding: 25,
+      marginLeft: 300,
+      marginRight: 300,
+      marginTop: 20,
+      borderRadius: 8,
+    },
+    btnNavText: {
+      color: 'whitesmoke',
+      fontSize: 23,
+      fontFamily: 'Montserrat',
+      fontWeight: '500',
+      textAlign: 'center',
     },
   });
