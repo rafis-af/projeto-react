@@ -42,7 +42,7 @@ export default class Home extends React.Component {
           </TouchableOpacity> 
         </View>
         <Text style={estilos.texto}>Painel do Personal do GymFEI.</Text>
-        <Text style={estilos.subtexto}>Gerencia o treino dos seus alunos</Text>
+        <Text style={estilos.subtexto}>Gerencie o treino dos seus alunos</Text>
         <View>
           <TouchableOpacity 
             title="Meus treinos" 

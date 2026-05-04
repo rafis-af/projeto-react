@@ -11,6 +11,7 @@ import CadastrarTreino from '../components/CadastrarTreino';
 import GerenciarTreino from '../components/GerenciarTreino';
 import Progresso from '../components/Progresso';
 import Treinos from '../components/Treinos';
+import IniciarTreino from '../components/IniciarTreino';
 
 const Stack = createNativeStackNavigator();
 
@@ -54,7 +55,22 @@ export default class AppNavigator extends React.Component {
             component={Treinos}
             options={{headerShown:false}}
           />
+          {/* <Stack.Screen
+            name="GerenciarTreino"
+            component={GerenciarTreino}
+            options={{headerShown:false}}
+          />
 
+          <Stack.Screen
+            name="Progresso"
+            component={Progresso}
+            options={{headerShown:false}}
+          />
+          <Stack.Screen
+            name="IniciarTreino"
+            component={IniciarTreino}
+            options={{headerShown:false}}
+          /> */}
         </Stack.Navigator>
       </NavigationContainer>
     );

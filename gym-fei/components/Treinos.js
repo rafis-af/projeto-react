@@ -1,6 +1,7 @@
 import React from "react";
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, FlatList } from "react-native";
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, FlatList, Button } from "react-native";
 import firebase from '../config/config';
+import IniciarTreino from "./IniciarTreino";
 
 export default class Treinos extends React.Component{
     constructor(props){
@@ -11,7 +12,16 @@ export default class Treinos extends React.Component{
     }
 
     componentDidMount() {
-        firebase.firestore().collection('treinos').get()
+        const usuario = firebase.auth().currentUser;
+        if(!usuario) {  
+            alert("Usuário não autenticado. Faça login novamente.");
+            this.props.navigation.navigate('Login');
+            return;
+        }
+
+
+
+        firebase.firestore().collection('treinos').where('alunoId', '==', usuario.uid).get()
             .then((snapshot) => {
                 let treinos = [];
 
@@ -42,6 +52,12 @@ export default class Treinos extends React.Component{
                         <Text style={estilos.nome}>{item.nome}</Text>
                         <Text style={estilos.texto}>Grupo: {item.grupoMuscular}</Text>
                         <Text style={estilos.texto}>Objetivo: {item.objetivo}</Text>
+                        <TouchableOpacity
+                            style={estilos.btnIniciar} 
+                            onPress={() => this.props.navigation.navigate('IniciarTreino', { treino: item })}
+                        >
+                            <Text style={estilos.btnIniciarTexto}>Iniciar Treino</Text>
+                        </TouchableOpacity>
                     </TouchableOpacity>
                 )}
             />
@@ -73,14 +89,29 @@ const estilos = StyleSheet.create({
   },
   nome: {
     color: 'white',
-    fontSize: 22,
+    fontSize: 26,
     fontWeight: 'bold',
     fontFamily: 'Montserrat',
+    textAlign: 'center',
   },
   texto: {
     color: '#ccc',
-    fontSize: 16,
+    fontSize: 20,
     marginTop: 5,
     fontFamily: 'Montserrat',
+    textAlign: 'center',
+  },
+  btnIniciar: {
+    marginTop: 10,
+    backgroundColor: '#7c47f5',
+    padding: 20,
+    borderRadius: 8,
+  },
+  btnIniciarTexto: {
+    color: 'white',
+    fontSize: 20,
+    textAlign: 'center',
+    fontFamily: 'Montserrat',
+    fontWeight: 'bold',
   },
 });
