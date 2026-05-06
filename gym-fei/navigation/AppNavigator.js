@@ -19,7 +19,7 @@ export default class AppNavigator extends React.Component {
   render(){
     return (
       <NavigationContainer>
-        <Stack.Navigator initialRouteName = "HomeUsuario">
+        <Stack.Navigator initialRouteName = "Login">
           <Stack.Screen 
             name="Cadastro" 
             component={Cadastro} 
@@ -55,22 +55,23 @@ export default class AppNavigator extends React.Component {
             component={Treinos}
             options={{headerShown:false}}
           />
-          {/* <Stack.Screen
+          <Stack.Screen
             name="GerenciarTreino"
             component={GerenciarTreino}
             options={{headerShown:false}}
           />
 
           <Stack.Screen
-            name="Progresso"
-            component={Progresso}
-            options={{headerShown:false}}
-          />
-          <Stack.Screen
             name="IniciarTreino"
             component={IniciarTreino}
             options={{headerShown:false}}
-          /> */}
+            /> 
+
+          {/* <Stack.Screen
+            name="Progresso"
+            component={Progresso}
+            options={{headerShown:false}}
+          />*/}
         </Stack.Navigator>
       </NavigationContainer>
     );

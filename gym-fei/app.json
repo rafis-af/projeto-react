@@ -28,5 +28,7 @@
     "plugins": [
       "expo-font"
     ]
+    
   }
+
 }

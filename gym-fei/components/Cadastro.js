@@ -10,6 +10,7 @@ export default class Cadastro extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      nome: '',
       user: '',
       password: '',
       fontLoaded: false
@@ -24,7 +25,7 @@ export default class Cadastro extends React.Component {
   console.log("Email:", email);
   console.log("Senha:", password);
 
-  if (email === '' || password === '') {
+  if (email === '' || password === '' || this.state.nome.trim() === '') {
     alert('Preencha todos os campos!');
     return;
   }
@@ -55,6 +56,8 @@ export default class Cadastro extends React.Component {
           alert('Email inválido');
         } else {
           alert(error.message);
+          console.log(error.code);
+          console.log(error.message);
         }
     });
   }
@@ -104,6 +107,14 @@ export default class Cadastro extends React.Component {
           style={estilos.input}
           placeholder="Digite sua senha..."
           onChangeText={(texto) => this.setState({ password: texto })}
+        />
+
+        <Text style={estilos.texto}>Digite seu nome:</Text>
+
+        <TextInput
+          style={estilos.input}
+          placeholder="Digite seu nome..."
+          onChangeText={(texto) => this.setState({ nome: texto })}
         />
 
         <TouchableOpacity 

@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from "react-native";
 import firebase from '../config/config';
 
 
@@ -13,9 +13,13 @@ export default class CadastrarTreino extends React.Component{
             exercicios: '',
             objetivo: '',
             alunos: [],
-            alunosSelecionados: null,
+            alunoSelecionados: null,
+            imagem: '',
         }
+
+        
     }
+
 
     componentDidMount(){
         firebase.firestore().collection('usuarios').where('tipo', '==', 'aluno').get().then((snapshot) => {
@@ -33,6 +37,7 @@ export default class CadastrarTreino extends React.Component{
 
     salvar(){
         const usuarioAtual = firebase.auth().currentUser;
+        const lista = this.state.exercicios.split(',').map(exercicio => exercicio.trim());
 
         if (!usuarioAtual) {
             alert("Usuário não autenticado. Faça login novamente.");
@@ -48,14 +53,20 @@ export default class CadastrarTreino extends React.Component{
             alert("Preencha todos os campos!");
             return;
         }
+        
+        if(!this.state.alunoSelecionado){
+            alert("Selecione um aluno para associar o treino!");
+            return;
+        }
 
         firebase.firestore().collection('treinos').add({
             nome: this.state.nome,
             grupoMuscular: this.state.grupoMuscular,
-            exercicios: this.state.exercicios,
+            exercicios: lista,
             objetivo: this.state.objetivo,
             personalId: usuarioAtual.uid,
             alunoId: this.state.alunoSelecionado,
+            imagem: this.state.imagemSelecionada,
         })
         .then(() => {
             alert("Treino cadastrado com sucesso!");
@@ -73,15 +84,20 @@ export default class CadastrarTreino extends React.Component{
             alert("Ocorreu um erro inesperado: " + error.message);
         });
 
-        if(!this.state.alunoSelecionado){
-            alert("Selecione um aluno para associar o treino!");
-            return;
-        }
 
     }
 
     render(){
+        const imagem = [
+            {nome: 'Peito', src: require('../assets/img/peitoral.png')},    
+            {nome: 'Costas', src: require('../assets/img/costas.png')},
+            {nome: 'Pernas', src: require('../assets/img/pernas.png')},
+            {nome: 'Braços', src: require('../assets/img/bracos.png')},
+            {nome: 'Ombros', src: require('../assets/img/ombros.png')},
+        ];
+
         return (
+            
             <View style={estilos.container}>
                 <TouchableOpacity
                     style={estilos.botaoVoltar}
@@ -143,11 +159,30 @@ export default class CadastrarTreino extends React.Component{
                     estilos.alunoItem,
                     this.state.alunoSelecionado === aluno.id && estilos.alunoSelecionado
                     ]}
+                    
                     onPress={() => this.setState({ alunoSelecionado: aluno.id })}
                 >
                     <Text style={estilos.textoAluno}>{aluno.nome}</Text>
                 </TouchableOpacity>
                 ))}
+
+                <Text style={estilos.subtitulo}>Escolha a imagem:</Text>
+
+                <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
+                    {imagem.map((img) => (
+                        <TouchableOpacity
+                        key={img.nome}
+                        onPress={() => this.setState({ imagem: img.nome })}
+                        style={{
+                            margin: 5,
+                            borderWidth: this.state.imagem === img.nome ? 2 : 0,
+                            borderColor: '#7c47f5'
+                        }}
+                        >
+                        <Image source={img.src} style={{ width: 150, height: 120 }} />
+                        </TouchableOpacity>
+                        ))}
+                </View>
 
             </View>
             );

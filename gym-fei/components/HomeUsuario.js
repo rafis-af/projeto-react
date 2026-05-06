@@ -70,15 +70,6 @@ export default class Home extends React.Component {
           >
             <Text style={estilos.btnNavText}>Meus Treinos</Text>
           </TouchableOpacity>
-          
-
-          <TouchableOpacity 
-            title="Cadastrar Treino" 
-            onPress={() => this.props.navigation.navigate('CadastrarTreino')} 
-            style={estilos.btnNav}
-          >
-            <Text style={estilos.btnNavText}>Cadastrar Treino</Text>
-          </TouchableOpacity>
 
           <TouchableOpacity 
             title="Progresso" 
