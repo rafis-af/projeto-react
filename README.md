@@ -1,4 +1,4 @@
-<img width="384" height="848" alt="demo-adm" src="https://github.com/user-attachments/assets/3b4953c7-f798-4418-a1f0-3136a3ded341" /># 🏋️ GymFEI
+# 🏋️ GymFEI
 
 Aplicativo mobile desenvolvido pelo aluno Rafael Almeida Ferreira da Fundação Educacional Inaciana Padre Sabóia de Medeiros (FEI), utilizando React Native com Expo para gerenciamento de treinos de academia.
 
@@ -114,11 +114,11 @@ Exibição de informações relacionadas ao desempenho do aluno.
 
 ### 💪 Criando um treino (Administrador/Personal)
 
-<img width="384" height="848" alt="demo-adm" src="https://github.com/user-attachments/assets/6c8b6aa9-fc4a-45ef-aecd-dfa6225a2f8e" />
+<img width="350" height="814" alt="demo-adm" src="https://github.com/user-attachments/assets/6c8b6aa9-fc4a-45ef-aecd-dfa6225a2f8e" />
 
 ### 🏋️‍♂️ Começando um treino (Usuário/Aluno)
 
-<img width="384" height="848" alt="demo-usu" src="https://github.com/user-attachments/assets/ebc0d7e8-6778-4bc7-a13f-efc797a7b656" />
+<img width="350" height="814" alt="demo-usu" src="https://github.com/user-attachments/assets/ebc0d7e8-6778-4bc7-a13f-efc797a7b656" />
 
 ---
 
