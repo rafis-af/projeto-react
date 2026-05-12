@@ -4,6 +4,7 @@ Aplicativo mobile desenvolvido pelo aluno Rafael Almeida Ferreira da Fundação 
 
 O sistema foi criado com o objetivo de auxiliar alunos e administradores no acompanhamento de treinos, organização de exercícios e monitoramento de progresso físico.
 
+A ideia do App surgiu por conta de um projeto realizado no semestre passado da faculdade na matéria de Front-End e IUX, onde a base dele foi a mesma (App de treinos de academia) porém com a estilização completamente diferente, moderna e mais acessível ao usuário.
 ---
 
 # 📖 Visão Geral e Requisitos
