@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from "react-native";
 import firebase from '../config/config';
+import ScreenContainer from '../components/ScreenContainer';
 
 
 export default class CadastrarTreino extends React.Component{
@@ -15,6 +16,7 @@ export default class CadastrarTreino extends React.Component{
             alunos: [],
             alunoSelecionados: null,
             imagem: '',
+            imagemSelecionada: '',
         }
 
         
@@ -89,15 +91,36 @@ export default class CadastrarTreino extends React.Component{
 
     render(){
         const imagem = [
-            {nome: 'Peito', src: require('../assets/img/peitoral.png')},    
-            {nome: 'Costas', src: require('../assets/img/costas.png')},
-            {nome: 'Pernas', src: require('../assets/img/pernas.png')},
-            {nome: 'Braços', src: require('../assets/img/bracos.png')},
-            {nome: 'Ombros', src: require('../assets/img/ombros.png')},
+            {
+                grupo: 'Peito',
+                valor: 'peito',
+                src: require('../assets/img/peitoral.png')
+            },
+            {
+                grupo: 'Costas',
+                valor: 'costas',
+                src: require('../assets/img/costas.png')
+            },
+            {
+                grupo: 'Pernas',
+                valor: 'pernas',
+                src: require('../assets/img/pernas.png')
+            },
+            {
+                grupo: 'Braços',
+                valor: 'bracos',
+                src: require('../assets/img/bracos.png')
+            },
+            {
+                grupo: 'Ombros',
+                valor: 'ombros',
+                src: require('../assets/img/ombros.png')
+    },
         ];
 
         return (
             
+            <ScreenContainer>
             <View style={estilos.container}>
                 <TouchableOpacity
                     style={estilos.botaoVoltar}
@@ -171,20 +194,21 @@ export default class CadastrarTreino extends React.Component{
                 <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
                     {imagem.map((img) => (
                         <TouchableOpacity
-                        key={img.nome}
-                        onPress={() => this.setState({ imagem: img.nome })}
-                        style={{
-                            margin: 5,
-                            borderWidth: this.state.imagem === img.nome ? 2 : 0,
-                            borderColor: '#7c47f5'
-                        }}
-                        >
-                        <Image source={img.src} style={{ width: 150, height: 120 }} />
+                            key={img.nome}
+                            onPress={() => this.setState({grupoMuscular: img.grupo, imagemSelecionada: img.valor, })}
+                            style={{
+                                margin: 5,
+                                borderWidth: this.state.imagem === img.nome ? 2 : 0,
+                                borderColor: '#7c47f5'
+                            }}
+                            >
+                            <Image source={img.src} style={{ width: 150, height: 120 }} />
                         </TouchableOpacity>
                         ))}
                 </View>
 
             </View>
+            </ScreenContainer>
             );
     }
 }
@@ -204,6 +228,7 @@ const estilos = StyleSheet.create({
         fontFamily: 'Montserrat',
         textAlign: 'center',
         marginBottom: 30,
+        marginTop: 80,
     },
 
     input: {
@@ -241,16 +266,18 @@ const estilos = StyleSheet.create({
         backgroundColor: '#aaaaab',
         padding: 15,
         borderRadius: 8,
-        marginTop: 10,
-        position: 'absolute',
-        top: 20,
-        left: 20,
+        marginTop: 0,
+        display:'flex',
+        justifyContent: 'center',
+        alignSelf: 'center',
+        position:'relative',
+        top:60,
     },
 
     textoBotaoVoltar: {
         color: 'white',
         fontSize: 18,
-        textAlign: 'left',
+        textAlign: 'center',
         fontFamily: 'Montserrat',
         fontWeight: 'bold',
     },
@@ -260,6 +287,7 @@ const estilos = StyleSheet.create({
     fontSize: 18,
     marginBottom: 10,
     fontFamily: 'Montserrat',
+    marginTop:20,
     },
 
     alunoItem: {

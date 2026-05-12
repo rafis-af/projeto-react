@@ -4,6 +4,7 @@ import firebase from '../config/config';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import * as Font from 'expo-font';
 import { Image } from 'react-native';
+import ScreenContainer from '../components/ScreenContainer';
 
 export default class Home extends React.Component {
   constructor(props) {
@@ -42,10 +43,10 @@ export default class Home extends React.Component {
   render() {
     return (
       <View style={{flex: 1, backgroundColor: '#070707', margin: 0, padding: 0, boxSizing: 'border-box'}}>
-        <View style={{backgroundColor: '#160e2a', padding: 20}}>
+        <View style={{backgroundColor: '#160e2a', padding: 20, paddingTop:75}}>
           <Image 
             source = {require('../assets/img/gymfei-logo-removebg-preview.png')}
-            style = {{width: 110, height: 90, alignSelf: 'center', position: 'relative', top: 0}}
+            style = {{width: 110, height: 90, alignSelf: 'center', position: 'relative', top: 5}}
           />
           <TouchableOpacity
             style={estilos.botao}
@@ -72,8 +73,8 @@ export default class Home extends React.Component {
           </TouchableOpacity>
 
           <TouchableOpacity 
-            title="Progresso" 
-            onPress={() => this.props.navigation.navigate('Progresso')} 
+            title="ProgressoAluno" 
+            onPress={() => this.props.navigation.navigate('ProgressoAluno')} 
             style={estilos.btnNav}
             >
             <Text style={estilos.btnNavText}>Progresso</Text>
@@ -89,7 +90,8 @@ const estilos = StyleSheet.create({
     botao: {
       backgroundColor: '#aaaaab',
       padding: 15,
-      marginTop: 10,
+      marginTop: 90,
+      marginLeft:15,
       alignSelf:'flex-start',
       position: 'absolute',
       borderRadius: 8,
@@ -129,9 +131,7 @@ const estilos = StyleSheet.create({
     btnNav: {
       backgroundColor: '#5a2c99',
       padding: 25,
-      marginLeft: 300,
-      marginRight: 300,
-      marginTop: 20,
+      margin:20,
       borderRadius: 8,
     },
     btnNavText: {

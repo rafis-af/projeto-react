@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet, Vibration } from "react-native";
-
+import ScreenContainer from '../components/ScreenContainer';
 export default class IniciarTreino extends React.Component {
   constructor(props) {
     super(props);
@@ -27,6 +27,16 @@ export default class IniciarTreino extends React.Component {
         exercicioAtual: this.state.exercicioAtual + 1
       });
     } else {
+      const usuario = firebase.auth().currentUser;
+      firebase.firestore().collection('historicoTreinos').doc(usuario.uid).update({
+        alunoId: usuario.uid,
+        treinoId: this.state.treino.id,
+        nomeTreino: this.state.treino.nome,
+        grupoMuscular: this.state.treino.grupoMuscular,
+        quantidadeExercicios: this.state.treino.exercicios.length,
+        data: new Date(),
+      });
+
       alert("Treino finalizado!");
       this.props.navigation.goBack();
     }

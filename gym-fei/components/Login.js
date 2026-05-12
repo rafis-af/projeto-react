@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text, View, Button, TextInput, Alert, StyleSheet, TouchableOpacity } from 'react-native';
+import { Text, View, Button, TextInput, Alert, StyleSheet, TouchableOpacity, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
 import firebase from '../config/config';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import * as Font from 'expo-font';
@@ -72,48 +72,55 @@ export default class Login extends React.Component {
     }
 
     return (
-          <View style={{flex: 1, backgroundColor: '#070706', margin: 0, padding: 0, boxSizing: 'border-box'}}>
-            <Image 
-              source = {require('../assets/img/gymfei-logo.png')}
-              style = {{width: 200, height: 200, alignSelf: 'center', marginTop: 20}}
-            />
-    
-            <Text style={estilos.titulo}>Bem-vindo(a) novamente ao GymFEI!</Text>
-            <Text style={estilos.subtitulo}>Faça seu login para continuar.</Text>
-            <Text 
-              style={estilos.subtitulo}>Nao possui uma conta ainda?  
-                <Text style={estilos.link}
-                  onPress={() => this.props.navigation.navigate('Cadastro')}> Realizar cadastro
-                </Text>
-            </Text>
-    
-            <Text style={estilos.texto}>Digite seu e-mail:</Text>
-    
-            <TextInput
-              style={estilos.input}
-              placeholder="Digite seu e-mail..."
-              autoCapitalize="none"
-              keyboardType="email-address"
-              onChangeText={(texto) => this.setState({ user: texto })}
-            />
-    
-            <Text style={estilos.texto}>Digite sua senha:</Text>
-    
-            <TextInput
-              style={estilos.input}
-              placeholder="Digite sua senha..."
-              onChangeText={(texto) => this.setState({ password: texto })}
-            />
-    
-            <TouchableOpacity 
-              style={estilos.botao}
-              onPress={() => {
-                this.ler();
-              }}
-            >
-              <Text style={estilos.botaoTexto}>Realizar Login</Text>
-            </TouchableOpacity> 
-          </View>
+          <KeyboardAvoidingView style={{flex: 1, backgroundColor: '#070706', margin: 0, padding: 0, boxSizing: 'border-box'}} behavior={Platform.OS === "ios" ? "padding" : "height"}>
+            
+            <ScrollView contentContainerStyle={{flexGrow: 1}} keyboardShouldPersistTaps="handled">
+
+            <View>
+              <Image 
+                source = {require('../assets/img/gymfei-logo.png')}
+                style = {{width: 200, height: 200, alignSelf: 'center', marginTop: 50}}
+              />
+              
+              <Text style={estilos.titulo}>Bem-vindo(a) novamente ao GymFEI!</Text>
+              <Text style={estilos.subtitulo}>Faça seu login para continuar.</Text>
+              <Text 
+                style={estilos.subtitulo}>Não possui uma conta ainda?  
+                  <Text style={estilos.link}
+                    onPress={() => this.props.navigation.navigate('Cadastro')}> Realizar cadastro
+                  </Text>
+              </Text>
+      
+              <Text style={estilos.texto}>Digite seu e-mail:</Text>
+      
+                <TextInput
+                  style={estilos.input}
+                  placeholder="Digite seu e-mail..."
+                  autoCapitalize="none"
+                  keyboardType="email-address"
+                  onChangeText={(texto) => this.setState({ user: texto })}
+                />
+        
+                <Text style={estilos.texto}>Digite sua senha:</Text>
+        
+                <TextInput
+                  style={estilos.input}
+                  placeholder="Digite sua senha..."
+                  onChangeText={(texto) => this.setState({ password: texto })}
+                />
+        
+                <TouchableOpacity 
+                  style={estilos.botao}
+                  onPress={() => {
+                    this.ler();
+                  }}
+                >
+                  <Text style={estilos.botaoTexto}>Realizar Login</Text>
+                </TouchableOpacity>
+            </View>
+
+            </ScrollView>
+          </KeyboardAvoidingView> 
         );
       }
   }
@@ -122,8 +129,9 @@ const estilos = StyleSheet.create({
     titulo: {
       color: 'whitesmoke',
       fontSize: 30,
-      alignSelf: 'center',
-      marginTop: 20,
+      textAlign: 'center',
+      marginLeft: 15,
+      marginRight:15,
       fontWeight: '700',
       fontFamily: 'Montserrat',
     },
@@ -131,28 +139,31 @@ const estilos = StyleSheet.create({
     subtitulo: {
       color: 'whitesmoke',              
       fontSize: 20,
-      alignSelf: 'center',
+      textAlign: 'center',
       marginTop: 10,
       marginBottom: 5,
+      marginLeft: 15,
+      marginRight:15,
       fontFamily: 'Montserrat',
     },
 
     texto: {
       color: 'whitesmoke',
       fontSize: 25,
-      marginLeft: 250,
+      marginLeft: 15,
+      marginRight:15,
       marginBottom: 20,
       fontFamily: 'Montserrat',
     },
     
     input: {
       height: 50,
-      padding: 20,
+      paddingLeft: 20,
       fontSize: 20,
       borderWidth: 1,
-      marginLeft: 250,
-      marginRight: 250,
       marginBottom: 20,
+      marginLeft: 15,
+      marginRight:15,
       borderRadius: 8,
       borderColor: 'gray',
       placeholderTextColor: 'lightgray',
@@ -172,9 +183,9 @@ const estilos = StyleSheet.create({
     botao: {
       backgroundColor: '#a973f9',
       padding: 15,
-      marginLeft: 250,
-      marginRight: 250,
       borderRadius: 8,
+      marginLeft: 15,
+      marginRight:15,
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',

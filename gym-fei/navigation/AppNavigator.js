@@ -9,9 +9,9 @@ import HomeUsuario from '../components/HomeUsuario'
 import HomeAdmin from '../components/HomeAdmin'
 import CadastrarTreino from '../components/CadastrarTreino';
 import GerenciarTreino from '../components/GerenciarTreino';
-import Progresso from '../components/Progresso';
 import Treinos from '../components/Treinos';
 import IniciarTreino from '../components/IniciarTreino';
+import ProgressoAluno from '../components/ProgressoAluno';
 
 const Stack = createNativeStackNavigator();
 
@@ -67,11 +67,12 @@ export default class AppNavigator extends React.Component {
             options={{headerShown:false}}
             /> 
 
-          {/* <Stack.Screen
-            name="Progresso"
-            component={Progresso}
+          <Stack.Screen
+            name="ProgressoAluno"
+            component={ProgressoAluno}
             options={{headerShown:false}}
-          />*/}
+          />
+          
         </Stack.Navigator>
       </NavigationContainer>
     );

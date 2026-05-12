@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, FlatList, Button, Touchable, Image } from "react-native";
 import firebase from '../config/config';
 import IniciarTreino from "./IniciarTreino";
+import ScreenContainer from '../components/ScreenContainer';
 
 export default class Treinos extends React.Component{
     constructor(props){
@@ -39,11 +40,11 @@ export default class Treinos extends React.Component{
 
     render() {
         const imagensMap = {
-            'Peito': require('../assets/img/peitoral.png'),
-            'Costas': require('../assets/img/costas.png'),
-            'Pernas': require('../assets/img/pernas.png'),
-            'Braços': require('../assets/img/bracos.png'),
-            'Ombros': require('../assets/img/ombros.png'),
+            peito: require('../assets/img/peitoral.png'),
+            costas: require('../assets/img/costas.png'),
+            pernas: require('../assets/img/pernas.png'),
+            bracos: require('../assets/img/bracos.png'),
+            ombros: require('../assets/img/ombros.png'),
         };
 
 
@@ -73,8 +74,14 @@ export default class Treinos extends React.Component{
                         <Text style={estilos.texto}>Grupo: {item.grupoMuscular}</Text>
                         <Text style={estilos.texto}>Objetivo: {item.objetivo}</Text>
                         <Image 
-                            source={imagensMap[item.imagem]} 
-                            style={{ width: 100, height: 100, alignSelf: 'center' }} 
+                            source={imagensMap[item.imagem]}
+                            style={{
+                                width: 200,
+                                height: 200,
+                                alignSelf: 'center',
+                                marginTop: 15,
+                            }}
+                            resizeMode="contain"
                         />
                         <TouchableOpacity
                             style={estilos.btnIniciar} 
@@ -95,6 +102,7 @@ const estilos = StyleSheet.create({
     flex: 1,
     backgroundColor: '#070706',
     padding: 20,
+    paddingTop:90,
   },
   titulo: {
     color: 'white',
@@ -142,6 +150,7 @@ const estilos = StyleSheet.create({
     backgroundColor: '#aaaaab',
     padding: 15,
     marginBottom: 20,
+    marginTop:20,
     borderRadius: 8,
     alignSelf: 'flex-start',
   },

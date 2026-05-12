@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, TouchableOpacity, Image, FlatList } from 'react-native';
 import firebase from '../config/config';
 import { StyleSheet } from 'react-native';
+import ScreenContainer from '../components/ScreenContainer';
 
 export default class GerenciarTreino extends React.Component {
     constructor(props){
@@ -107,6 +108,7 @@ const estilos = StyleSheet.create({
     flex: 1,
     backgroundColor: '#070706',
     padding: 20,
+    paddingTop:90,
   },
 
   titulo: {
@@ -154,12 +156,11 @@ const estilos = StyleSheet.create({
   btnVoltar: {
     backgroundColor: '#aaaaab',
     padding: 15,
-    marginTop: 10,
-    alignSelf:'flex-start',
-    position: 'absolute',
     borderRadius: 8,
     display: 'flex',
-  },
+    justifyContent: 'center',
+    alignSelf: 'center',
+},
    btnVoltarTexto: {
     color: 'whitesmoke',
     fontSize: 20,

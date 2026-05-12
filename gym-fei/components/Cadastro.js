@@ -4,6 +4,7 @@ import firebase from '../config/config';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import * as Font from 'expo-font';
 import { Image } from 'react-native';
+import ScreenContainer from '../components/ScreenContainer';
 
 
 export default class Cadastro extends React.Component {
@@ -79,7 +80,7 @@ export default class Cadastro extends React.Component {
       <View style={{flex: 1, backgroundColor: '#070706', margin: 0, padding: 0, boxSizing: 'border-box'}}>
         <Image 
           source = {require('../assets/img/gymfei-logo.png')}
-          style = {{width: 200, height: 200, alignSelf: 'center', marginTop: 20}}
+          style = {{width: 200, height: 200, alignSelf: 'center', marginTop: 50}}
         />
 
         <Text style={estilos.titulo}>Bem-vindo(a) ao GymFEI!</Text>
@@ -134,8 +135,9 @@ const estilos = StyleSheet.create({
     titulo: {
       color: 'whitesmoke',
       fontSize: 30,
-      alignSelf: 'center',
-      marginTop: 20,
+      textAlign: 'center',
+      marginLeft: 15,
+      marginRight:15,
       fontWeight: '700',
       fontFamily: 'Montserrat',
     },
@@ -143,16 +145,19 @@ const estilos = StyleSheet.create({
     subtitulo: {
       color: 'whitesmoke',              
       fontSize: 20,
-      alignSelf: 'center',
+      textAlign: 'center',
       marginTop: 10,
       marginBottom: 5,
+      marginLeft: 15,
+      marginRight:15,
       fontFamily: 'Montserrat',
     },
 
     texto: {
       color: 'whitesmoke',
       fontSize: 25,
-      marginLeft: 250,
+      marginLeft: 15,
+      marginRight:15,
       marginBottom: 20,
       fontFamily: 'Montserrat',
     },
@@ -162,9 +167,9 @@ const estilos = StyleSheet.create({
       padding: 20,
       fontSize: 20,
       borderWidth: 1,
-      marginLeft: 250,
-      marginRight: 250,
       marginBottom: 20,
+      marginLeft: 15,
+      marginRight:15,
       borderRadius: 8,
       borderColor: 'gray',
       placeholderTextColor: 'lightgray',
@@ -184,8 +189,8 @@ const estilos = StyleSheet.create({
     botao: {
       backgroundColor: '#a973f9',
       padding: 15,
-      marginLeft: 250,
-      marginRight: 250,
+      marginLeft: 15,
+      marginRight: 15,
       borderRadius: 8,
       display: 'flex',
       justifyContent: 'center',
