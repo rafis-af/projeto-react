@@ -115,13 +115,13 @@ Exibição de informações relacionadas ao desempenho do aluno.
 ### 💪 Criando um treino (Administrador/Personal)
 
 ```md
-![Demonstração do App](demo-adm.mp4)
+![Demonstração do App](demo-adm.gif)
 ```
 
 ### 🏋️‍♂️ Começando um treino (Usuário/Aluno)
 
 ```md
-![Vídeo de Demonstração](demo-usu.mp4)
+![Vídeo de Demonstração](demo-usu.gif)
 ```
 
 ---
