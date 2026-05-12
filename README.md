@@ -114,15 +114,11 @@ Exibição de informações relacionadas ao desempenho do aluno.
 
 ### 💪 Criando um treino (Administrador/Personal)
 
-```md
-  <img width="384" height="848" alt="demo-adm" src="https://github.com/user-attachments/assets/6c8b6aa9-fc4a-45ef-aecd-dfa6225a2f8e" />
-```
+<img width="384" height="848" alt="demo-adm" src="https://github.com/user-attachments/assets/6c8b6aa9-fc4a-45ef-aecd-dfa6225a2f8e" />
 
 ### 🏋️‍♂️ Começando um treino (Usuário/Aluno)
 
-```md
-  <img width="384" height="848" alt="demo-usu" src="https://github.com/user-attachments/assets/ebc0d7e8-6778-4bc7-a13f-efc797a7b656" />
-```
+<img width="384" height="848" alt="demo-usu" src="https://github.com/user-attachments/assets/ebc0d7e8-6778-4bc7-a13f-efc797a7b656" />
 
 ---
 
