@@ -115,13 +115,13 @@ Exibição de informações relacionadas ao desempenho do aluno.
 ### 💪 Criando um treino (Administrador/Personal)
 
 ```md
-![Demonstração do App](../demo-adm.gif)
+![Demonstração do App](../gym-fei/assets/demo-adm.gif)
 ```
 
 ### 🏋️‍♂️ Começando um treino (Usuário/Aluno)
 
 ```md
-![Vídeo de Demonstração](../demo-usu.gif)
+![Vídeo de Demonstração](../gym-fei/assets/demo-usu.gif)
 ```
 
 ---
