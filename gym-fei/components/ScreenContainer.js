@@ -1,5 +1,4 @@
-
-import React from 'react';
+import React from "react";
 import {
   KeyboardAvoidingView,
   Platform,
@@ -8,7 +7,7 @@ import {
   Keyboard,
   View,
   StatusBar,
-} from 'react-native';
+} from "react-native";
 
 export default function ScreenContainer({
   children,
@@ -21,10 +20,9 @@ export default function ScreenContainer({
   return (
     <KeyboardAvoidingView
       style={{ flex: 1 }}
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
     >
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        
         <Container
           style={{ flex: 1 }}
           contentContainerStyle={[
@@ -39,12 +37,8 @@ export default function ScreenContainer({
         >
           <StatusBar barStyle="light-content" />
 
-          <View style={[{ flex: 1 }, style]}>
-            {children}
-          </View>
-
+          <View style={[{ flex: 1 }, style]}>{children}</View>
         </Container>
-
       </TouchableWithoutFeedback>
     </KeyboardAvoidingView>
   );

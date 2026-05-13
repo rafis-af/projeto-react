@@ -1,230 +1,225 @@
 import React from "react";
-import { View, Text, StyleSheet, FlatList } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+  TouchableOpacity,
+} from "react-native";
 import firebase from "../config/config";
-
 export default class ProgressoAluno extends React.Component {
+  constructor(props) {
+    super(props);
 
-    constructor(props){
-        super(props);
+    this.state = {
+      historico: [],
+      totalTreinos: 0,
 
-        this.state = {
-            historico: [],
-            totalTreinos: 0,
+      peito: 0,
+      costas: 0,
+      pernas: 0,
+      bracos: 0,
+      ombros: 0,
+    };
+  }
 
-            peito: 0,
-            costas: 0,
-            pernas: 0,
-            bracos: 0,
-            ombros: 0,
-        }
-    }
+  componentDidMount() {
+    this.carregarHistorico();
+  }
 
-    componentDidMount(){
-        this.carregarHistorico();
-    }
+  carregarHistorico() {
+    const usuario = firebase.auth().currentUser;
 
-    carregarHistorico(){
+    firebase
+      .firestore()
+      .collection("historicoTreinos")
+      .where("alunoId", "==", usuario.uid)
+      .orderBy("data", "desc")
+      .get()
+      .then((snapshot) => {
+        let lista = [];
 
-        const usuario = firebase.auth().currentUser;
+        let peito = 0;
+        let costas = 0;
+        let pernas = 0;
+        let bracos = 0;
+        let ombros = 0;
 
-        firebase.firestore()
-        .collection('historicoTreinos')
-        .where('alunoId', '==', usuario.uid)
-        .get()
-        .then((snapshot) => {
+        snapshot.forEach((doc) => {
+          const treino = {
+            id: doc.id,
+            ...doc.data(),
+          };
 
-            let lista = [];
+          lista.push(treino);
 
-            let peito = 0;
-            let costas = 0;
-            let pernas = 0;
-            let bracos = 0;
-            let ombros = 0;
+          switch (treino.grupoMuscular) {
+            case "Peito":
+              peito++;
+              break;
 
-            snapshot.forEach((doc) => {
+            case "Costas":
+              costas++;
+              break;
 
-                const treino = {
-                    id: doc.id,
-                    ...doc.data()
-                };
+            case "Pernas":
+              pernas++;
+              break;
 
-                lista.push(treino);
+            case "Bracos":
+              bracos++;
+              break;
 
-                switch(treino.grupoMuscular){
-
-                    case 'Peito':
-                        peito++;
-                        break;
-
-                    case 'Costas':
-                        costas++;
-                        break;
-
-                    case 'Pernas':
-                        pernas++;
-                        break;
-
-                    case 'Braços':
-                        bracos++;
-                        break;
-
-                    case 'Ombros':
-                        ombros++;
-                        break;
-                }
-            });
-
-            this.setState({
-                historico: lista,
-                totalTreinos: lista.length,
-
-                peito,
-                costas,
-                pernas,
-                bracos,
-                ombros,
-            });
-
-        })
-        .catch((error) => {
-            alert(error.message);
+            case "Ombros":
+              ombros++;
+              break;
+          }
         });
-    }
 
-    render(){
+        this.setState({
+          historico: lista,
+          totalTreinos: lista.length,
 
-        return(
+          peito,
+          costas,
+          pernas,
+          bracos,
+          ombros,
+        });
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
+  }
 
-            <View style={estilos.container}>
+  render() {
+    return (
+      <View style={estilos.container}>
+        <Text style={estilos.titulo}>Meu Progresso</Text>
 
-                <Text style={estilos.titulo}>
-                    Meu Progresso
-                </Text>
+        <View style={estilos.card}>
+          <Text style={estilos.total}>
+            Total de treinos: {this.state.totalTreinos}
+          </Text>
+        </View>
 
-                <View style={estilos.card}>
+        <View style={estilos.card}>
+          <Text style={estilos.texto}>Peito: {this.state.peito}</Text>
 
-                    <Text style={estilos.total}>
-                        Total de treinos: {this.state.totalTreinos}
-                    </Text>
+          <Text style={estilos.texto}>Costas: {this.state.costas}</Text>
 
-                </View>
+          <Text style={estilos.texto}>Pernas: {this.state.pernas}</Text>
 
-                <View style={estilos.card}>
+          <Text style={estilos.texto}>Braços: {this.state.bracos}</Text>
 
-                    <Text style={estilos.texto}>
-                        Peito: {this.state.peito}
-                    </Text>
+          <Text style={estilos.texto}>Ombros: {this.state.ombros}</Text>
+        </View>
 
-                    <Text style={estilos.texto}>
-                        Costas: {this.state.costas}
-                    </Text>
+        <Text style={estilos.subtitulo}>Últimos treinos</Text>
 
-                    <Text style={estilos.texto}>
-                        Pernas: {this.state.pernas}
-                    </Text>
+        <FlatList
+          data={this.state.historico.slice(0, 2)}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => (
+            <View style={estilos.item}>
+              <Text style={estilos.nomeTreino}>{item.nomeTreino}</Text>
 
-                    <Text style={estilos.texto}>
-                        Braços: {this.state.bracos}
-                    </Text>
+              <Text style={estilos.grupo}>{item.grupoMuscular}</Text>
 
-                    <Text style={estilos.texto}>
-                        Ombros: {this.state.ombros}
-                    </Text>
-
-                </View>
-
-                <Text style={estilos.subtitulo}>
-                    Últimos treinos
-                </Text>
-
-                <FlatList
-                    data={this.state.historico}
-                    keyExtractor={(item) => item.id}
-
-                    renderItem={({ item }) => (
-
-                        <View style={estilos.item}>
-
-                            <Text style={estilos.nomeTreino}>
-                                {item.nomeTreino}
-                            </Text>
-
-                            <Text style={estilos.grupo}>
-                                {item.grupoMuscular}
-                            </Text>
-
-                        </View>
-
-                    )}
-                />
-
+              <Text style={estilos.grupo}>
+                {item.data?.toDate().toLocaleDateString("pt-BR")}
+              </Text>
             </View>
+          )}
+        />
 
-        );
-    }
+        <TouchableOpacity
+          style={estilos.btnVoltar}
+          onPress={() => this.props.navigation.goBack()}
+        >
+          <Text style={estilos.btnVoltarTexto}>Voltar</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
 }
 
 const estilos = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#070706",
+    padding: 20,
+  },
 
-    container: {
-        flex: 1,
-        backgroundColor: '#070706',
-        padding: 20,
-    },
+  titulo: {
+    color: "white",
+    fontSize: 32,
+    textAlign: "center",
+    marginBottom: 20,
+    fontWeight: "bold",
+    paddingTop: 75,
+  },
 
-    titulo: {
-        color: 'white',
-        fontSize: 32,
-        textAlign: 'center',
-        marginBottom: 20,
-        fontWeight: 'bold',
-    },
+  subtitulo: {
+    color: "white",
+    fontSize: 24,
+    marginTop: 20,
+    marginBottom: 10,
+  },
 
-    subtitulo: {
-        color: 'white',
-        fontSize: 24,
-        marginTop: 20,
-        marginBottom: 10,
-    },
+  card: {
+    backgroundColor: "#171717",
+    padding: 20,
+    borderRadius: 12,
+    marginBottom: 15,
+    borderWidth: 1,
+    borderColor: "#7c47f5",
+  },
 
-    card: {
-        backgroundColor: '#171717',
-        padding: 20,
-        borderRadius: 12,
-        marginBottom: 15,
-        borderWidth: 1,
-        borderColor: '#7c47f5',
-    },
+  total: {
+    color: "#7c47f5",
+    fontSize: 24,
+    textAlign: "center",
+    fontWeight: "bold",
+  },
 
-    total: {
-        color: '#7c47f5',
-        fontSize: 24,
-        textAlign: 'center',
-        fontWeight: 'bold',
-    },
+  texto: {
+    color: "white",
+    fontSize: 18,
+    marginBottom: 5,
+  },
 
-    texto: {
-        color: 'white',
-        fontSize: 18,
-        marginBottom: 5,
-    },
+  item: {
+    backgroundColor: "#171717",
+    padding: 15,
+    borderRadius: 10,
+    marginBottom: 10,
+  },
 
-    item: {
-        backgroundColor: '#171717',
-        padding: 15,
-        borderRadius: 10,
-        marginBottom: 10,
-    },
+  nomeTreino: {
+    color: "white",
+    fontSize: 22,
+    fontWeight: "bold",
+  },
 
-    nomeTreino: {
-        color: 'white',
-        fontSize: 20,
-        fontWeight: 'bold',
-    },
+  grupo: {
+    color: "#ccc",
+    marginTop: 5,
+    fontSize: 16,
+  },
 
-    grupo: {
-        color: '#ccc',
-        marginTop: 5,
-    },
+  btnVoltar: {
+    backgroundColor: "#aaaaab",
+    padding: 15,
+    borderRadius: 8,
+    marginTop: 20,
+    alignSelf: "center",
+  },
 
+  btnVoltarTexto: {
+    color: "whitesmoke",
+    fontSize: 20,
+    fontFamily: "Montserrat",
+    fontWeight: "500",
+  },
 });
