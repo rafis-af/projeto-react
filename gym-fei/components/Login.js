@@ -22,7 +22,6 @@ export default class Login extends React.Component {
     this.state = {
       user: "",
       password: "",
-      fontLoaded: false,
     };
   }
 

@@ -37,11 +37,17 @@ export default class TreinosExcluidos extends React.Component {
             ...doc.data(),
           });
         });
+        
 
         this.setState({
           treinos: lista,
         });
+      
+      })
+      .catch((error) => {
+        alert(error.message);
       });
+      
   }
 
   restaurarTreino(id) {
@@ -56,7 +62,11 @@ export default class TreinosExcluidos extends React.Component {
         alert("Treino restaurado!");
 
         this.carregarTreinos();
+      })
+      .catch((error) => {
+        alert(error.message);
       });
+      
   }
 
   render() {

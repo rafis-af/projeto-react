@@ -30,6 +30,11 @@ export default class ProgressoAluno extends React.Component {
   carregarHistorico() {
     const usuario = firebase.auth().currentUser;
 
+    if (!usuario) {
+      this.props.navigation.goBack();
+      return;
+    }
+
     firebase
       .firestore()
       .collection("historicoTreinos")
@@ -66,7 +71,7 @@ export default class ProgressoAluno extends React.Component {
               pernas++;
               break;
 
-            case "Bracos":
+            case "Braços":
               bracos++;
               break;
 

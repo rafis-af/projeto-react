@@ -14,6 +14,8 @@ export default class IniciarTreino extends React.Component {
 
     const treino = this.props.route.params.treino;
 
+    this._mounted = true;
+
     this.state = {
       treino: treino,
       exercicioAtual: 0,
@@ -23,6 +25,7 @@ export default class IniciarTreino extends React.Component {
   }
 
   componentWillUnmount() {
+    this._mounted = false;
     if (this.interval) {
       clearInterval(this.interval);
     }
@@ -51,6 +54,7 @@ export default class IniciarTreino extends React.Component {
     });
 
     this.interval = setInterval(() => {
+      if (!this._mounted) return;
       this.setState((prevState) => {
         if (prevState.tempo <= 1) {
           clearInterval(this.interval);
@@ -86,6 +90,12 @@ export default class IniciarTreino extends React.Component {
   concluirTreino() {
     const treino = this.props.route.params.treino;
     const usuario = firebase.auth().currentUser;
+
+    if(!usuario){
+      alert("Sessão expirada. Faça login novamente.");
+      this.props.navigation.navigate("Login");
+      return;
+    }
 
     firebase
       .firestore()

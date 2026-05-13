@@ -19,7 +19,7 @@ export default class CadastrarTreino extends React.Component {
       exercicios: "",
       objetivo: "",
       alunos: [],
-      alunoSelecionados: null,
+      alunoSelecionado: null,
       imagem: "",
       imagemSelecionada: "",
     };

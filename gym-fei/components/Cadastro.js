@@ -21,7 +21,6 @@ export default class Cadastro extends React.Component {
       nome: "",
       user: "",
       password: "",
-      fontLoaded: false,
     };
   }
 
