@@ -1,34 +1,46 @@
 {
   "expo": {
-    "name": "gym-fei",
+    "name": "GymFEI",
     "slug": "gym-fei",
-    "version": "1.0.0",
+    "version": "2.0.0",
+    "scheme": "gymfei",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
-    "newArchEnabled": true,
-    "splash": {
-      "image": "./assets/splash-icon.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
+    "userInterfaceStyle": "dark",
+    "backgroundColor": "#060B16",
     "ios": {
-      "supportsTablet": true
+      "bundleIdentifier": "com.gymfei.app",
+      "supportsTablet": false
     },
     "android": {
+      "package": "com.gymfei.app",
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      },
-      "edgeToEdgeEnabled": true
+        "backgroundColor": "#0A1834",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "output": "single",
+      "favicon": "./assets/favicon.png",
+      "name": "GymFEI",
+      "shortName": "GymFEI",
+      "themeColor": "#060B16",
+      "backgroundColor": "#060B16"
     },
     "plugins": [
-      "expo-font"
+      "expo-font",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/splash-icon.png",
+          "imageWidth": 180,
+          "resizeMode": "contain",
+          "backgroundColor": "#060B16"
+        }
+      ],
+      "@react-native-vector-icons/lucide"
     ]
-    
   }
-
 }

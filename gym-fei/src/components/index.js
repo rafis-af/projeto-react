@@ -1,0 +1,25 @@
+// Ponto único de importação dos componentes usados pelas telas.
+export { default as AnelProgresso } from "./AnelProgresso";
+export { default as Avatar } from "./Avatar";
+export { default as AvisoDemo } from "./AvisoDemo";
+export { default as BarraAbas } from "./BarraAbas";
+export { default as Botao, BotaoIcone } from "./Botao";
+export { default as CabecalhoSecao } from "./CabecalhoSecao";
+export { default as CampoTexto } from "./CampoTexto";
+export { default as Cartao } from "./Cartao";
+export { default as CartaoConvite } from "./CartaoConvite";
+export { default as CartaoEstatistica } from "./CartaoEstatistica";
+export { default as CartaoTreino } from "./CartaoTreino";
+export { default as Chip } from "./Chip";
+export { default as EditorExercicios } from "./EditorExercicios";
+export { default as Esqueleto } from "./Esqueleto";
+export { default as EstadoVazio } from "./EstadoVazio";
+export { default as FaixaSemana } from "./FaixaSemana";
+export { default as GraficoBarras } from "./GraficoBarras";
+export { default as Icone } from "./Icone";
+export { default as Logo, MarcaLogo } from "./Logo";
+export { default as MapaMuscular } from "./MapaMuscular";
+export { default as SeletorGrupo } from "./SeletorGrupo";
+export { default as Selo } from "./Selo";
+export { default as Tela, Cabecalho, TituloGrande } from "./Tela";
+export { default as Texto } from "./Texto";
